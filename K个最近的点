@@ -1,0 +1,53 @@
+/**
+ * Definition for a point.
+ * class Point {
+ *     int x;
+ *     int y;
+ *     Point() { x = 0; y = 0; }
+ *     Point(int a, int b) { x = a; y = b; }
+ * }
+ */
+public class Solution {
+    /**
+     * @param points a list of points
+     * @param origin a point
+     * @param k an integer
+     * @return the k closest points
+     */
+    public double getlength(Point x,Point origin){
+	return Math.pow((x.x-origin.x),2)+Math.pow((x.y-origin.y),2);
+}
+    public Point[] kClosest(Point[] points, Point origin, int k) {
+        // Write your code here
+    Point[] ans=new Point[k];
+    /*第n次循环选出第n小的距离点*/
+    for(int i=0;i<k;i++)
+	for(int j=i;j<points.length;j++){
+		if(getlength(points[i],origin)>getlength(points[j],origin)){
+			Point temp=points[i];
+			points[i]=points[j];
+			points[j]=temp;
+		}else if(getlength(points[i],origin)==getlength(points[j],origin)){
+			if(points[i].x>points[j].x){
+				Point temp=points[i];
+				points[i]=points[j];
+				points[j]=temp;
+			}
+			else if(points[i].x==points[j].x){
+				if(points[i].y>points[j].y){
+					Point temp=points[i];
+					points[i]=points[j];
+					points[j]=temp;
+				}
+			}
+		}
+	}
+
+
+for(int i=0;i<k;i++)
+	ans[i]=points[i];
+         
+
+return ans;
+    }
+}
