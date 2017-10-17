@@ -1,0 +1,48 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param root the root of binary tree
+     * @param target an integer
+     * @return all valid paths
+     */
+     List<List<Integer>> bin =new ArrayList<>();
+ public void getpath(TreeNode root,int target,String ss,int sum){
+   sum+=root.val;
+   ss+=""+root.val+"#";
+   if(sum==target&&root.left==null&&root.right==null){
+     
+       String[]temp=ss.split("#");
+       List<Integer> tx=new ArrayList<>();
+	      for(int i=0;i<temp.length;i++){
+	      tx.add(Integer.parseInt(temp[i]));
+	      }
+      bin.add(tx);
+     
+   }
+  if(root.left!=null&&sum)
+   getpath(root.left,target,ss,sum);
+   if(root.right!=null&&sum)
+   getpath(root.right,target,ss,sum);
+   
+}
+public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
+   // Write your code here
+   //List<List<Integer>> ans=new ArrayList<>();
+   List<Integer> res=new ArrayList();
+   bin.clear();
+   String str="";
+   if(root!=null)
+   getpath(root,target,str,0);
+   return bin;
+}
+}
