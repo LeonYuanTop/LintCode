@@ -1,0 +1,23 @@
+public class Solution {
+    /*
+     * @param : A list of integers
+     * @return: An integer
+     */
+    public int triangleCount(int[] S) {
+        // write your code here
+        Arrays.sort(S);
+        int ans=0;
+        for(int i=0;i<S.length-2;i++){
+        for(int j=i+1;j<S.length-1;j++){
+            int x=j;
+            int y=S.length-1;
+            while(x<y&&S[i]+S[x]<=S[y]){
+                y--;
+            }
+            if(y>x)ans+=y-x;    
+          }
+        }
+        
+        return ans;
+    }
+};
