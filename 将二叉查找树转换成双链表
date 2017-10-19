@@ -1,0 +1,59 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ * Definition for Doubly-ListNode.
+ * public class DoublyListNode {
+ *     int val;
+ *     DoublyListNode next, prev;
+ *     DoublyListNode(int val) {
+ *         this.val = val;
+ *         this.next = this.prev = null;
+ *     }
+ * }
+ */ 
+public class Solution {
+      /**
+     * @param root: The root of tree
+     * @return: the head of doubly list node
+     */
+     int sum=0;
+     TreeNode[] temp;//存放中序遍历的序列
+    public void getlength(TreeNode root){
+        sum++;
+        if(root.left!=null)getlength(root.left);
+        if(root.right!=null)getlength(root.right);
+    }
+    
+    public void mid(TreeNode root){
+        if(root.left!=null)mid(root.left);
+        temp[sum++]=root;
+        if(root.right!=null)mid(root.right);
+    }
+    public DoublyListNode bstToDoublyList(TreeNode root) {  
+        // Write your code here
+            if(root==null)return null;
+            getlength(root);
+        // System.out.println(sum);
+            temp=new TreeNode[sum];
+            sum=0;
+            mid(root);
+           
+            DoublyListNode ans=new DoublyListNode(temp[0].val);
+            DoublyListNode tx=ans;
+            for(int i=1;i<temp.length;i++){
+            DoublyListNode ty=new DoublyListNode(temp[i].val);//为新加入链表的节点分配空间
+            tx.next=ty;
+            ty.prev=tx;
+            tx=tx.next;
+        }
+        
+    return ans;
+    }
+}
