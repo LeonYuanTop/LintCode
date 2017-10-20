@@ -1,0 +1,31 @@
+public class Solution {
+    /**
+     * @param num a positive number
+     * @return true if it's a palindrome or false
+     */
+    public boolean palindromeNumber(int x) {
+        // Write your code here
+        boolean isp=true;
+		if(x<0)isp=false;
+		else{
+			int d=0;
+			int a=x;
+			int b=x;
+			while(x!=0){
+				x/=10;
+				d++;
+			}
+			int left,right;
+			while(d!=0){
+				left=a/(int)Math.pow(10, --d);//获取当前最高位
+			
+				a-=left*Math.pow(10, d);//移除最高位
+				right=b%10;//获取最低位
+				b/=10;//移除最低位
+				
+				if(left!=right)return false;//只要出现不等的情况直接return FALSE
+			}
+		}
+		return isp;
+    }
+}
