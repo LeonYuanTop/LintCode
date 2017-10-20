@@ -1,0 +1,59 @@
+public class Solution {
+    /**
+     * @param s  an expression includes numbers, letters and brackets
+     * @return a string
+     */
+    public String expressionExpand(String s) {
+        // Write your code here
+        Stack sk = new Stack();  
+        String hehe="";
+        for(int i=s.length()-1;i>=0;i--){
+            char c=s.charAt(i);
+            if((c>='a'&&c<='z')||(c>='A'&&c<='Z')||c==']')//字母和']'压入堆栈，注意判断字符是否为字母的方法
+              sk.push(c);
+              else if(c=='[')//开始遇到数字，要计算重复次数
+              {
+                  int temp=i-1;
+                  int repeat=0;
+                  int b=1;
+                  // System.out.println(c);
+                  while(temp>=0&&Character.isDigit(s.charAt(temp)))//计算重复次数
+                  {
+                      repeat+=Character.getNumericValue(s.charAt(temp))*b;
+                      b*=10;
+                      temp--;
+                  }
+                  String str="";
+          
+                   //System.out.println(sk.pop());
+                  while((Character)sk.peek()!=']')//将'['he ']'之间的字母弹出
+                  {
+                      str+=sk.pop();
+                      
+                  }
+             
+                  sk.pop();//弹出']'
+                  //System.out.println(str);
+                  String ans="";
+                 while(repeat>0)
+                 {
+                      ans+=str;
+                      repeat--;
+                 }
+                 
+                  for(int j=ans.length()-1;j>=0;j--)//为了符合输出要求，要再用一次之前被清空的堆栈倒序输出
+                  {
+                      sk.push(ans.charAt(j));
+                  }
+              }
+              
+             
+            
+        }
+         while(!sk.isEmpty())
+         {
+                  hehe+=sk.pop();
+         }
+          return hehe;
+    }
+}
