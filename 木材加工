@@ -1,0 +1,46 @@
+public class Solution {
+    /*
+     * @param L: Given n pieces of wood with length L[i]
+     * @param k: An integer
+     * @return: The maximum length of the small pieces
+     */
+     
+    public int getk(int[] buf,int mid){
+        int ans=0;
+        int len=buf.length;
+        if(mid==0)return 0;
+        for(int i=0;i<len;i++)
+        {
+            
+            ans+=buf[i]/mid;
+        }
+        return ans;
+    }
+    public int woodCut(int[] buf, int k) {
+        // write your code here
+        Arrays.sort(buf);
+        int ans=0;
+        int len=buf.length;
+        int cn=0;
+        if(len==0)return 0;
+        int low=0,high=buf[len-1],mid=0;
+        while(low<=high){
+            mid=low+(high-low)/2;
+            cn=getk(buf,mid);
+            System.out.println(mid);
+            if(cn>=k)//至少为K！！！
+            {
+                ans=ans>mid?ans:mid;
+                low=mid+1;
+            }
+            else 
+            {
+                high=mid-1;
+            }
+            
+           
+        }
+        System.out.println(ans);
+        return ans;
+    }
+}
