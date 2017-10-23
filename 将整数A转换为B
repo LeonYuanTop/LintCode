@@ -1,0 +1,28 @@
+public class Solution {
+    /*
+     * @param a: An integer
+     * @param b: An integer
+     * @return: An integer
+     */
+    public int bitSwapRequired(int a, int b) {
+        // write your code here
+        int ans=0;
+        int flag=1;
+        int i=0;
+        int j=0;
+        int tem=32;
+        while(tem>0)
+        {
+            i=a&flag;
+            j=b&flag;
+            a=a>>1;
+            b=b>>1;
+            int c=i^j;
+            System.out.println(c);
+            if((i^j)>0)ans++;
+            tem--;
+        }
+        
+        return ans;
+    }
+};
