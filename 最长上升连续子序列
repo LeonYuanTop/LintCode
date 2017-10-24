@@ -1,0 +1,39 @@
+public class Solution {
+    /*
+     * @param A: An array of Integer
+     * @return: an integer
+     */
+    public int longestIncreasingContinuousSubsequence(int[] nums) {
+        // write your code here
+        int len=nums.length;
+        if(len==0)return 0;
+        int ans=1;
+        int[] dp=new int[len];
+        dp[0]=1;
+        for(int i=1;i<len;i++)
+        {   
+               if(nums[i]>nums[i-1])
+            {
+                dp[i]=dp[i-1]+1;
+                ans=ans>dp[i]?ans:dp[i];
+            }
+            else dp[i]=1;
+            
+        }
+        
+        
+         for(int i=1;i<len;i++)
+        {   
+            if(nums[i]<nums[i-1])
+            {
+                dp[i]=dp[i-1]+1;
+                ans=ans>dp[i]?ans:dp[i];
+            }
+                
+                else dp[i]=1;
+        }
+        
+        
+        return ans;
+    }
+}
