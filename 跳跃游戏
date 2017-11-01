@@ -1,0 +1,19 @@
+public class Solution {
+    /*
+     * @param A: A list of integers
+     * @return: A boolean
+     */
+    public boolean canJump(int[] A) {
+        // write your code here
+        int currentmax=A[0];
+        int len=A.length;
+        
+        for(int i=1;i<len;i++)
+        {
+            if(currentmax<i)return false;
+            currentmax=Math.max(A[i]+i,currentmax);//记录当前能到达的最远点
+        }
+        return true;
+    }
+}
+
