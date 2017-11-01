@@ -1,0 +1,57 @@
+public class Solution {
+    /*
+     * @param nums: A list of integers
+     * @return: A list of integers
+     */
+    public int[] nextPermutation(int[] nums) {
+        // write your code here
+        int len=nums.length;
+        if(len==1)return nums;
+        int i=len-1;
+        while(nums[i]<=nums[i-1])
+        {
+            i--;
+            if(i==0)
+            {
+                int left=0;
+                int right=len-1;
+                while(left<right)
+                {
+                    int temp=nums[left];
+                    nums[left]=nums[right];
+                    nums[right]=temp;
+                    left++;
+                    right--;
+                }
+                return nums;
+            }
+        }
+            
+            i--;
+            int temp=nums[i];
+            int j=len-1;
+            while(nums[j]<=temp)j--;
+            nums[i]=nums[j];
+            nums[j]=temp;
+            int left=i+1;
+            int right=len-1;
+                while(left<right)
+                {
+                    temp=nums[left];
+                    nums[left]=nums[right];
+                    nums[right]=temp;
+                    left++;
+                    right--;
+                }
+            
+           
+            
+            
+            
+        
+        
+       
+        return nums;
+        
+    }
+}
