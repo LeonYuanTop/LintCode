@@ -31,7 +31,7 @@ public class Solution {
         temp.next=head;
         ListNode end=temp;
         ListNode mid=temp;
-        ListNode pre=temp;
+        ListNode pre=temp;//记录mid节点的前一个节点
         int k=1;
         while(end!=null&&end.next!=null)
         {
@@ -44,7 +44,7 @@ public class Solution {
             k--;
         }
        
-        if(end.val==head.val&&head.next==null)
+        if(end.val==head.val&&head.next==null)//判据要严格，链表只剩一个节点的情况
         {
              //System.out.println(head.val);
              TreeNode root=new TreeNode(head.val);
@@ -52,7 +52,7 @@ public class Solution {
              return root;
             
         }
-        if(head.next.val==end.val&&head.next.next==null)
+        if(head.next.val==end.val&&head.next.next==null)//链表只剩两个节点的情况
         {
             TreeNode root=new TreeNode(mid.val);
             root.right=new TreeNode(end.val);
