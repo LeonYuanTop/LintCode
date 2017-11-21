@@ -1,0 +1,26 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer.
+     */
+   
+    public int maxDepth(TreeNode root) {
+        // write your code here
+        if(root==null)
+        return 0;
+        int left=1+maxDepth(root.left);//获取当前节点左子树的深度
+        int right=1+maxDepth(root.right);//获取当前节点右子树的深度
+        return Math.max(left,right);//返回当前节点的深度
+    }
+}
