@@ -1,0 +1,45 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+
+public class Solution {
+    /*
+     * @param root: The root of the binary search tree.
+     * @param node: insert this node into the binary search tree
+     * @return: The root of the new binary search tree.
+     */
+    public TreeNode insertNode(TreeNode root, TreeNode node) {
+        // write your code here
+        TreeNode x=root;
+        TreeNode y=null;
+        while(x!=null)
+        {   
+            y=x;
+            if(node.val>=x.val)
+            x=x.right;
+            else
+            x=x.left;
+        }
+        
+        if(y==null)//这是一棵空树
+        root=node;
+        else{
+            if(node.val>=y.val)
+            y.right=node;
+            else
+            y.left=node;
+        }
+        
+        return root;
+        
+    }
+}
