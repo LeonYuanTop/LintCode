@@ -1,0 +1,56 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+ 
+ 
+public class Solution {
+    /**
+     *@param preorder : A list of integers that preorder traversal of a tree
+     *@param inorder : A list of integers that inorder traversal of a tree
+     *@return : Root of a tree
+     */
+     
+    public int[] getbuf(int buf[],int i,int j){
+        int len=j-i+1;
+        int[] ans=new int[len];
+        for(int x=0;x<len;x++)
+        ans[x]=buf[i++];
+        
+        return ans;
+    }
+    public TreeNode buildTree(int[] pre, int[] in) {
+        // write your code here
+        int len=pre.length;
+        if(len==0)return null;
+        TreeNode root=new TreeNode(pre[0]);
+        
+        int i=0;
+        int j=0;
+        
+        while(pre[0]!=in[i])i++;
+       
+        int[] lin=getbuf(in,0,i-1);
+        int[] lpre=getbuf(pre,1,i);
+     
+        
+        int[] rpre=getbuf(pre,i+1,len-1);
+        int[] rin=getbuf(in,i+1,len-1);
+        root.left=buildTree(lpre,lin);
+        root.right=buildTree(rpre,rin);
+        
+        return root;
+        
+        
+        
+        
+        
+    }
+}
